@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/vue-2.5.22.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .thin{
+            font-weight: 200;
+        }
+        .italic{
+            font-style: italic;
+        }
+        .active{
+            /*单词间隙*/
+            letter-spacing: 0.5em;
+            /*英文单词间隙 对中文无效*/
+            /*word-spacing: 0.5em;*/
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--<h1 class="red thin">这是一个很大的h1</h1>-->
+
+    <!--<h1 :class="['red', 'thin', 'italic']">这是一个很大的h1</h1>-->
+
+    <!--<h1 :class="['red', 'thin', flag ? 'active': '']">这是一个很大的h1</h1>-->
+
+    <!--<h1 :class="['red', 'thin', {'active': flag}]">这是一个很大的h1</h1>-->
+
+    <h1 :class="classObj">这是一个很大的h1</h1>
+
+
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true,
+            classObj: {red: true, italic: true, active: true}
+        },
+        methods: {
+        }
+    });
+</script>
+</html>

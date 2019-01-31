@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--解决插值时候的值闪烁问题-->
+    <p v-cloak>{{msg}}</p>
+    <!--文本显示，和上面效果一样，但不能在前面添加文字内容-->
+    <p v-text="msg"></p>
+    <!--使用v-text标签，标签里面的内容会被覆盖-->
+    <p v-text="msg">====</p>
+
+    <div v-text="msg1"></div>
+    <div v-html="msg1">{{msg1}}</div>
+</div>
+</body>
+    <script src="../lib/vue-2.5.22.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '123',
+            msg1: '<h1>这是一个h1内容</h1>'
+        }
+    })
+</script>
+</html>

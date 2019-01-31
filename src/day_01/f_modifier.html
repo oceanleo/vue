@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .inner {
+            width: 400px;
+            height: 300px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--<div class="inner" @click="div1">
+        &lt;!&ndash;stop事件修饰符，stop阻止冒泡事件&ndash;&gt;
+        <input type="button" value="按钮" @click.stop="btn">
+        &lt;!&ndash;.prevent 阻止默认行为&ndash;&gt;
+        <a href="https://www.baidu.com" @click.prevent="link">百度一下</a>
+    </div>-->
+
+    <!--.capture 实现捕获触发事件机制-->
+   <!-- <div class="inner" @click.capture="div1">
+        <input type="button" value="按钮" @click.stop="btn">
+    </div>-->
+
+    <!--.self 只有点击当前元素时候，才会出发事件函数-->
+    <!--<div class="inner" @click.slef="div1">
+        <input type="button" value="按钮" @click.stop="btn">
+    </div>-->
+
+    <!--.once 只触发一次-->
+    <a href="https://www.baidu.com" @click.prevent.once="link">百度一下</a>
+</div>
+
+</body>
+<script src="../lib/vue-2.5.22.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            div1 () {
+                console.log('触发了div1点击事件');
+            },
+            btn () {
+                console.log('触发了btn点击事件');
+            },
+            link () {
+                console.log('触发了link点击事件');
+            }
+        }
+    });
+
+    // document.getElementById("btn").onclick = function () {
+    //     alert('button on');
+    // }
+</script>
+</html>

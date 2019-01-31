@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/vue-2.5.22.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <h4>{{msg}}</h4>
+    <!--v-bind只能实现单向数据绑定-->
+    <input type="text" :value="msg">
+    <br>
+    <!--v-model 双向数据绑定 只能用于表单元素中-->
+    <!--input(radio,text,address,email) select checkbox textarea-->
+    <input type="text" v-model="msg">
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: ' 这是一个msg'
+        },
+        methods: {}
+    });
+</script>
+</html>

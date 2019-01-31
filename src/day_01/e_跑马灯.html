@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="跑起来" @click="run">
+    <input type="button" value="停下来" @click="stop">
+
+    <h3>{{msg}}</h3>
+</div>
+</body>
+<script src="../lib/vue-2.5.22.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '猥琐发育，别浪!!!!!!!',
+            intervalId: null//定时器Id
+        },
+        methods: {
+            run: function () {
+                // ES5写法
+                /*var _this = this;
+                setInterval(function () {
+                    // 在vm实例中，想要获取data中数据的方法，需求通过this来访问
+                    var msg = _this.msg;
+                    var head = msg.substring(0, 1);
+                    var end = msg.substring(1);
+                    // vue实例会监听data中数据，如果data有变化，会自动改变页面的显示
+                    _this.msg = end + head;
+
+                }, 400);*/
+
+                if (!this.intervalId) {
+                    // ES6写法,里面的this指代函数外面的this
+                    this.intervalId = setInterval(() => {
+                        var msg = this.msg;
+                        var head = msg.substring(0, 1);
+                        var end = msg.substring(1);
+                        // vue实例会监听data中数据，如果data有变化，会自动改变页面的显示
+                        this.msg = end + head;
+                    }, 500);
+                }
+            },
+            stop: function () {
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                }
+            }
+        }
+    });
+
+    // document.getElementById("btn").onclick = function () {
+    //     alert('button on');
+    // }
+</script>
+</html>
