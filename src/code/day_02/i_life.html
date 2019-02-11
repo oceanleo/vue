@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../lib/vue-2.5.22.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg"/>
+    <h2 id="h2">{{msg}}</h2>
+</div>
+</body>
+<script>
+    //创建Vue实例
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'OK'
+        },
+        methods: {
+            show() {
+                console.log('执行了show方法')
+            }
+        },
+        // 对象实例完全被创建出来之前执行
+        beforeCreate() {
+            // console.log(this.msg);  // undefined
+            // this.show();            // this.show is not a function
+        },
+        // 对象实例创建完成时候调用 最早操作data数据或者func只能在这里操作
+        created() {
+            console.log(this.msg);      // OK
+            this.show();                //
+        },
+        // 表示模板已经在内存中编译完成，还没有渲染到页面中，页面中的元素还没有替换出来
+        beforeMount() {
+            console.log(document.getElementById('h2').innerText); // {{msg}}
+        },
+        // 内存中的模板已经挂载到页面中，已经可以看到渲染好的页面 实例已经被完全创建好了
+        mounted() {
+            console.log(document.getElementById('h2').innerText); // OK
+        },
+        beforeUpdate() {
+            //当数据有变化时候，触发update方法
+            // 页面数据还没有刷新
+            console.log(document.getElementById('h2').innerText); // OK
+            console.log(this.msg); // OK1
+        },
+        updated() {
+            // 页面数据已经更新
+            console.log(document.getElementById('h2').innerText); // OK1
+            console.log(this.msg); // OK1
+        },
+        beforeDestroy() {
+            // 当执行这个函数时候，实例就从运行阶段进入到销毁阶段
+            // 实例上面所有的data和methods以及过滤器，指令都处于可用状态，还没有真正执行销毁
+        },
+        destroyed() {
+            // 当执行这个函数时候，实例就从运行阶段进入到销毁阶段
+            // 实例上面所有都不可用
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns: xmlns:>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../lib/vue-2.5.22.js"></script>
+    <script src="../../lib/vue-resource-1.5.1.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="get" @click="getInfo"/>
+</div>
+</body>
+<script>
+    //创建Vue实例
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            getInfo() {
+                this.$http.get('http:/vue.studyit.io/api/get', {}).then(function (result) {
+                    //成功回调函数，不可省
+                    console.log(result.body);
+                    //通过result.body获取服务器返回请求
+                }, function () {
+                    // 失败回调函数，可省略
+                })
+            },
+            postInfo() {
+                // emulateJSON 以form形式提交
+                this.$http.post('https://www.baidu.com', {}, {emulateJSON: true}).then(result => {
+                    console.log(result.body);
+                })
+            },
+            jsonpInfo() {
+                this.$http.jsonp('', {}).then(result => {
+                    console.log(result.body);
+                })
+            }
+        }
+    });
+</script>
+</html>
