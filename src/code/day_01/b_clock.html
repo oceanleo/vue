@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,20 +21,15 @@
 
     <div v-text="msg1"></div>
     <div v-html="msg1">{{msg1}}</div>
-
-    <!--<input type="button" value="按钮" v-bind:title="myTitle+ '123'">-->
-    <!--简写-->
-    <input type="button" value="按钮" :title="myTitle+ '123'">
 </div>
 </body>
-    <script src="../lib/vue-2.5.22.js"></script>
+    <script src="../../lib/vue-2.5.22.js"></script>
 <script>
     var vm = new Vue({
         el: '#app',
         data: {
             msg: '123',
-            msg1: '<h1>这是一个h1内容</h1>',
-            myTitle: '这上diyTitle'
+            msg1: '<h1>这是一个h1内容</h1>'
         }
     })
 </script>

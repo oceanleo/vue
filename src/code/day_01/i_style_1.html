@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../lib/vue-2.5.22.js"></script>
+    <script src="../../lib/vue-2.5.22.js"></script>
     <style>
         .red{
             color: red;
@@ -24,25 +24,20 @@
 </head>
 <body>
 <div id="app">
-    <!--<h1 class="red thin">这是一个很大的h1</h1>-->
+    <!--对象就是无序键值对集合-->
+    <!--<h1 :style="{color: 'red', 'font-size': '40px'}">这是一个很大的h1</h1>-->
 
-    <!--<h1 :class="['red', 'thin', 'italic']">这是一个很大的h1</h1>-->
+    <!--<h1 :style="styleObj1">这是一个很大的h1</h1>-->
 
-    <!--<h1 :class="['red', 'thin', flag ? 'active': '']">这是一个很大的h1</h1>-->
-
-    <!--<h1 :class="['red', 'thin', {'active': flag}]">这是一个很大的h1</h1>-->
-
-    <h1 :class="classObj">这是一个很大的h1</h1>
-
-
+    <h1 :style="[styleObj1, styleObj2]">这是一个很大的h1</h1>
 </div>
 </body>
 <script>
     var vm = new Vue({
         el: '#app',
         data: {
-            flag: true,
-            classObj: {red: true, italic: true, active: true}
+            styleObj1: {color: 'red', 'font-weight': 200},
+            styleObj2: {'font-style': 'italic'}
         },
         methods: {
         }
