@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="../../lib/animate-3.7.0.css" rel="stylesheet">
+  <script src="../../lib/vue-2.5.22.js"></script>
+  <style>
+    .ball {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #c69500;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="切换" @click="flag =! flag">
+  <!--钩子函数-->
+  <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+    <div v-if="flag" class="ball"></div>
+  </transition>
+</div>
+</body>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      flag: false
+    },
+    methods: {
+      // el 表示原生dom对象
+      beforeEnter(el) {
+        //启始位置
+        el.style.transform = "translate(0, 0)";
+      },
+      enter(el, done) {
+        el.offsetWidth;
+
+        el.style.transform = "translate(150px, 250px)";
+        el.style.transition = 'all 1s ease';
+        // done 是afterEnter函数的引用
+        done();
+      },
+      afterEnter(el) {
+        this.flag = !this.flag;
+      }
+    }
+  });
+</script>
+</html>

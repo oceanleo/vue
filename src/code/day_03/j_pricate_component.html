@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../lib/vue-2.5.22.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<template id="tmpl">
+  <div>
+    <h3>HHHHH3333</h3>
+    <span>111</span>
+  </div>
+</template>
+<div id="app">
+  <!--组件名称如果有驼峰,驼峰改为小写，并用短横线连接-->
+  <my-com3></my-com3>
+  <login></login>
+</div>
+<div id="app2">
+
+</div>
+</body>
+<script>
+
+  //组件的template只能有一个根元素
+  Vue.component('myCom3', {
+    template: '#tmpl'
+  });
+
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {},
+    components: {
+      //私有组件
+      login: {
+        template: '<div>123</div>'
+      }
+    }
+  });
+</script>
+</html>

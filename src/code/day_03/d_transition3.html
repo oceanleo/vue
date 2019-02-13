@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <script src="../../lib/vue-2.5.22.js"></script>
+
+  <link href="../../lib/animate-3.7.0.css" rel="stylesheet">
+
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="切换" @click="flag=!flag">
+  <!--<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+    <h3 v-if="flag">这是一个h3</h3>
+  </transition>-->
+
+  <!--duration 入场和离场的时间毫秒值-->
+
+  <!--<transition enter-active-class="zoomIn" leave-active-class="zoomOut" :duration="400">
+    <h3 v-if="flag" class="animated">这是一个h3</h3>
+  </transition>
+-->
+  <transition enter-active-class="zoomIn" leave-active-class="zoomOut" :duration="{enter:1000,leave:1000}">
+    <h3 v-if="flag" class="animated">这是一个h3</h3>
+  </transition>
+</div>
+</body>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      flag: false
+    },
+    methods: {}
+  });
+</script>
+</html>

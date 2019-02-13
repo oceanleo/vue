@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="../../lib/vue-2.5.22.js"></script>
-    <script type="text/javascript" src="../../lib/vue-resource-1.5.1.js"></script>
+  <script type="text/javascript" src="../../lib/vue-resource-1.5.1.js"></script>
 
 </head>
 <body>
@@ -41,45 +41,45 @@
 </div>
 </body>
 <script>
-    //全局配置
-    Vue.http.options.root = 'http://localhost:8080/ssm/';
-    Vue.http.options.emulateJSON = true;
+  //全局配置
+  Vue.http.options.root = 'http://localhost:8080/ssm/';
+  Vue.http.options.emulateJSON = true;
 
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            name: '',
-            list: [
-                {uuid: 1, name: '奔驰'},
-                {uuid: 2, name: '宝马'}
-            ]
-        },
-        methods: {
-            add() {
-                this.$http.post('vue/create', {name: this.name}).then(result => {
-                    var data = result.body.data;
-                    this.name = '';
-                    this.findAll();
-                    alert(data);
-                });
-            },
-            del(uuid) {
-                this.$http.post('vue/del', {uuid: uuid}).then(result => {
-                    var data = result.body.data;
-                    this.findAll();
-                    alert(data);
-                });
-            },
-            findAll() {
-                this.$http.post('vue/list', {}).then(result => {
-                    var data = result.body.data;
-                    this.list = data;
-                });
-            }
-        },
-        created() {
-            this.findAll();
-        }
-    });
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      name: '',
+      list: [
+        {uuid: 1, name: '奔驰'},
+        {uuid: 2, name: '宝马'}
+      ]
+    },
+    methods: {
+      add() {
+        this.$http.post('vue/create', {name: this.name}).then(result => {
+          var data = result.body.data;
+          this.name = '';
+          this.findAll();
+          alert(data);
+        });
+      },
+      del(uuid) {
+        this.$http.post('vue/del', {uuid: uuid}).then(result => {
+          var data = result.body.data;
+          this.findAll();
+          alert(data);
+        });
+      },
+      findAll() {
+        this.$http.post('vue/list', {}).then(result => {
+          var data = result.body.data;
+          this.list = data;
+        });
+      }
+    },
+    created() {
+      this.findAll();
+    }
+  });
 </script>
 </html>

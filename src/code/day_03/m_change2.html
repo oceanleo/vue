@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../lib/vue-2.5.22.js"></script>
+</head>
+<body>
+
+<template id="tmpl">
+  <div>
+    <b>登录页面</b>
+  </div>
+</template>
+
+<template id="tmpl2">
+  <div>
+    <b>注册页面</b>
+  </div>
+</template>
+
+<div id="app">
+  <a href="" @click.prevent="componentName = 'login'">登录</a>
+  <a href="" @click.prevent="componentName = 'register'">注册</a>
+
+  <component :is="componentName"></component>
+</div>
+
+</body>
+<script>
+  Vue.component('login', {
+    template: '#tmpl'
+  });
+
+  Vue.component('register', {
+    template: '#tmpl2'
+  });
+
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      flag: true,
+      componentName: ''
+    },
+    methods: {}
+  });
+</script>
+</html>

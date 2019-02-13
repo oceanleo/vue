@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../lib/vue-2.5.22.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+
+<template id="tmpl">
+  <div>
+    <input type="button" value="+1" @click="add">
+    <hr/>
+    <span>{{count}}</span>
+  </div>
+</template>
+
+<div id="app">
+  <!--组件名称如果有驼峰,驼峰改为小写，并用短横线连接-->
+  <counter></counter>
+  <counter></counter>
+  <counter></counter>
+</div>
+
+</body>
+<script>
+  // var dataObj = {count: 0};
+  //组件的template只能有一个根元素
+  Vue.component('counter', {
+    template: '#tmpl',
+    // 组件中的data 只能为方法，必须要返回一个对象用法和对象一样
+    data: function () {
+      return {count: 0};
+    },
+    methods: {
+      add() {
+        this.count++;
+      }
+    }
+  });
+
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {}
+  });
+</script>
+</html>

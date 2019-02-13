@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../lib/vue-2.5.22.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--组件名称如果有驼峰,驼峰改为小写，并用短横线连接-->
+  <my-com1></my-com1>
+</div>
+</body>
+<script>
+  // extend 创建全局组件
+  var com1 = Vue.extend({
+    // template 将来组件展示具体内容
+    template: '<h1>这是一个H1</h1>'
+  });
+
+  // Vue.component(组件名称，模板对象)
+  Vue.component('myCom1', com1);
+
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {}
+  });
+</script>
+</html>
