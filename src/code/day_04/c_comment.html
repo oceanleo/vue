@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:v-for="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../lib/vue-2.5.22.js"></script>
+
+  <style>
+    li {
+      border: 1px dashed #005cbf;
+      margin: 5px;
+      line-height: 35px;
+      padding-left: 5px;
+      font-size: 12px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <com @load-com="loadComment"></com>
+  <li v-for='item in list' :key='item.id'>评论人:{{item.user}} --- 评论内容:{{item.content}}</li>
+</div>
+
+<template id="tmpl">
+  <div>
+    <label>评论人:</label>
+    <input type="text" v-model="user">
+    <label>评论内容:</label>
+    <input type="text" v-model="content">
+    <input type="button" value="发表" @click="postComment">
+  </div>
+</template>
+<script>
+  var com = {
+    template: '#tmpl',
+    data: function () {
+      return {
+        user: '',
+        content: ''
+      }
+    },
+    methods: {
+      postComment() {
+        var comment = {id: Date.now(), user: this.user, content: this.content};
+        var list = JSON.parse(localStorage.getItem('cmts') || '[]');
+        list.unshift(comment);
+        localStorage.setItem('cmts', JSON.stringify(list));
+        this.user = this.content = '';
+        this.$emit('load-com');
+      }
+    }
+  };
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      list: [
+        {id: Date.now(), user: '张1', content: '张1-content'},
+        {id: Date.now(), user: '张2', content: '张2-content'},
+        {id: Date.now(), user: '张3', content: '张3-content'}
+      ]
+    },
+    methods: {
+      loadComment() {
+        this.list = JSON.parse(localStorage.getItem('cmts') || '[]');
+      }
+    },
+    components: {
+      com: com
+    },
+    created() {
+      this.loadComment();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../lib/vue-2.5.22.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--在引用子组件的时候，通过v-bind属性绑定的形式把需要传递绘子组件的数据以属性绑定的形式传递给子组件-->
+  <!--注意命名参数命名-->
+  <com1 v-bind:parent-msg="msg"></com1>
+</div>
+
+<script>
+  //创建Vue实例
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      msg: '父组件的msg'
+    },
+    methods: {},
+    components: {
+      // 默认访问不到父组件的data和methods
+      com1: {
+        template: '<h2>这是子组件--- {{parentMsg}}</h2>',
+        // 接收父组件传递的值,里的数据都是父组件传递过来的
+        props: ['parent-msg'],
+
+      }
+    }
+  });
+</script>
+</body>
+</html>

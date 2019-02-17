@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:v-for="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../lib/vue-2.5.22.js"></script>
+  <script src="../../lib/vue-router-3.0.2.js"></script>
+
+  <style>
+    html,boty{
+      padding: 0;
+      margin: 0;
+    }
+
+    .header {
+      background-color: #c69500;
+      height: 100px;
+    }
+
+    .container{
+      display: flex;
+      height: 500px;
+    }
+
+    h1{
+      margin: 0;
+      padding: 0;
+      font-size: 30px;
+    }
+
+    .left {
+      background-color: #1e7e34;
+      flex: 2
+    }
+
+    .center{
+      background-color: #f5c6cb;
+      flex: 10
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <router-view></router-view>
+  <div class="container">
+    <router-view name="left"></router-view>
+    <router-view name="main"></router-view>
+  </div>
+</div>
+<script>
+
+  var topBox = {
+    template: '<h1 class="header">Top</h1>'
+  };
+
+  var leftBox = {
+    template: '<h1 class="left">Left</h1>'
+  };
+
+  var centerBox = {
+    template: '<h1 class="center">Center</h1>'
+  };
+
+  var router = new VueRouter({
+    routes: [
+      /*{path: '/', component: topBox},
+      {path: '/left', component: leftBox},
+      {path: '/center', component: centerBox}*/
+      {
+        path: '/', components: {
+          default: topBox,
+          left: leftBox,
+          main: centerBox
+        }
+      },
+    ]
+  });
+
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    router,
+    methods: {},
+    components: {}
+  });
+</script>
+</body>
+</html>
