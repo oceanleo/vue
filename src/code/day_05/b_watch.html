@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../lib/vue-2.5.22.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="first">
+    <input type="text" v-model="last">
+    <input type="text" v-model="full">
+</div>
+
+<script>
+    //创建Vue实例
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            first: '',
+            last: '',
+            full: ''
+        },
+        methods: {},
+        watch: { //可以监听data数据的改变
+            first: function (newVal, oldValue) {
+                this.full = this.first + '-' + this.last;
+            },
+            last: function (newVal, oldValue) {
+                this.full = this.first + '-' + this.last;
+            }
+        }
+    });
+</script>
+</body>
+</html>

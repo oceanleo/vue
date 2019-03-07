@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../lib/vue-2.5.22.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="first">
+    <input type="text" v-model="last">
+    <input type="text" v-model="full">
+
+    <p>{{full}}</p>
+    <p>{{full}}</p>
+    <p>{{full}}</p>
+    <p>{{full}}</p>
+</div>
+
+<script>
+    //创建Vue实例
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            first: '',
+            last: ''
+        },
+        methods: {},
+        //定义计算属性，本质就是一个方法，在使用的时候，名称做为一个属性使用，不是一个方法使用
+        computed: {
+            //方法内部的data数据发生变化，会自动重新计算
+            full: function () {
+                //值每次变化只会计算一次
+                console.log('count');
+                return this.first + '-' + this.last;
+            }
+        }
+    });
+</script>
+</body>
+</html>
