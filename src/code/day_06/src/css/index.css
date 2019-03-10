@@ -1,0 +1,21 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    /*background-color: cyan;*/
+}
+
+.box {
+    width: 200px;
+    height: 150px;
+    /*background-color: #17a2b8;*/
+    background: url("../images/1.jpg");
+    background-size: cover;
+}
+
+.box2 {
+    width: 200px;
+    height: 150px;
+    /*background-color: #17a2b8;*/
+    background: url("../images2/1.jpg");
+    background-size: cover;
+}
